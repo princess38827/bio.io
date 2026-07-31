@@ -20,3 +20,23 @@ Highlighted richer examples in this repo include:
 - `plugins/build-web-apps` for deployment, UI, payments, and database workflows
 - `plugins/expo` for Expo and React Native apps, SDK upgrades, EAS workflows, and Codex Run actions
 - `plugins/netlify`, `plugins/remotion`, and `plugins/google-slides` for additional public skill- and MCP-backed plugin bundles
+Use the Life Science Research plugin to compare TSLP, IL33, and IL1RL1 for asthma target prioritization.
+
+Run these independent lanes in parallel with subagents:
+- Human genetics and GWAS: gwas-catalog-skill, opentargets-skill, gnomad-graphql-skill
+- Cohort replication and PheWAS: finngen-phewas-skill, ukb-topmed-phewas-skill, biobankjapan-phewas-skill, tpmi-phewas-skill
+- Target-disease evidence and disease context: opentargets-skill, efo-ontology-skill
+- Clinical and regulatory precedent: clinicaltrials-skill, opentargets-skill, chembl-skill, pharmgkb-skill
+- Literature and public-dataset context: ncbi-entrez-skill, ncbi-pmc-skill, biorxiv-skill, ncbi-datasets-skill, biostudies-arrayexpress-skill
+- Expression and tissue/cell-type context: human-protein-atlas-skill, gtex-eqtl-skill, cellxgene-skill, bgee-skill
+
+For each lane:
+- score TSLP, IL33, IL1RL1 on a 1-5 scale
+- keep direct asthma evidence separate from adjacent allergic/atopic phenotypes
+- save raw payloads when helpful
+
+Then synthesize:
+- a lane-by-target score table
+- a final rank of TSLP, IL33, IL1RL1
+- a confidence assessment and the main caveats
+- two visuals: a prioritization heatmap and a GWAS summary figure with the lead asthma-linked variants for each target
